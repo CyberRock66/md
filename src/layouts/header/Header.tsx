@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useUserStore } from '@/store/useUser';
+import { UserProfile } from '@/components';
 import { headerPrivateLinks, headerPublicLinks } from './Header.data';
 import { HeaderProps } from './Header.props';
 import { HeaderLink } from './HeaderLink';
@@ -30,6 +31,11 @@ export const Header = () => {
                   </HeaderLink>
                 </li>
               ))}
+            {user && (
+              <li className="nav-item">
+                <UserProfile />
+              </li>
+            )}
           </ul>
         </div>
       </nav>
