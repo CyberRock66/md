@@ -24,11 +24,13 @@ export const headerPrivateLinks = [
   },
   {
     id: 2,
+    icon: `ion-compose`,
     name: 'New article',
     href: '/new-article',
   },
   {
     id: 3,
+    icon: 'ion-gear-a',
     name: 'Settings',
     href: '/settings',
   },

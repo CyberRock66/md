@@ -25,7 +25,9 @@ export const Header = () => {
             {user &&
               headerPrivateLinks.map((item: HeaderProps) => (
                 <li className="nav-item" key={item.id.toString()}>
-                  <HeaderLink href={item.href}>{item.name}</HeaderLink>
+                  <HeaderLink icon={item.icon} href={item.href}>
+                    {item.name}
+                  </HeaderLink>
                 </li>
               ))}
           </ul>

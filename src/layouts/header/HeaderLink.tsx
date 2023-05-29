@@ -6,8 +6,8 @@ import { PropsWithChildren } from 'react';
 import { HeaderProps } from './Header.props';
 
 export const HeaderLink: React.FC<
-  Pick<HeaderProps, 'href'> & PropsWithChildren
-> = ({ href, children }) => {
+  Pick<HeaderProps, 'href' | 'icon'> & PropsWithChildren
+> = ({ href, icon, children }) => {
   const pathname = usePathname();
 
   return (
@@ -15,6 +15,8 @@ export const HeaderLink: React.FC<
       className={pathname === `${href}` ? 'nav-link active' : 'nav-link'}
       href={href}
     >
+      {icon && <i className={icon} />}
+      &nbsp;
       {children}
     </Link>
   );
