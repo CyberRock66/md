@@ -24,8 +24,8 @@ export const headerPrivateLinks = [
   },
   {
     id: 2,
-    name: 'New articles',
-    href: '/new-articles',
+    name: 'New article',
+    href: '/new-article',
   },
   {
     id: 3,

@@ -1,3 +1,3 @@
-export const publicRoutes = ['/'];
+export const publicRoutes = ['/', '/auth/login', '/auth/register'];
 
-export const privateRoutes = ['/private', '/'];
+export const privateRoutes = ['/', '/new-article', '/settings'];

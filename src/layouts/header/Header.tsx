@@ -1,12 +1,11 @@
-'use client';
-
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { headerPublicLinks } from './Header.data';
+import { useUserStore } from '@/store/useUser';
+import { headerPrivateLinks, headerPublicLinks } from './Header.data';
 import { HeaderProps } from './Header.props';
+import { HeaderLink } from './HeaderLink';
 
 export const Header = () => {
-  const pathname = usePathname();
+  const { user } = useUserStore.getState();
 
   return (
     <header>
@@ -15,19 +14,20 @@ export const Header = () => {
           <Link className="navbar-brand" href="/">
             conduit
           </Link>
+
           <ul className="nav navbar-nav pull-xs-right">
-            {headerPublicLinks.map((item: HeaderProps) => (
-              <li className="nav-item" key={item.id.toString()}>
-                <Link
-                  className={
-                    pathname === `${item.href}` ? 'nav-link active' : 'nav-link'
-                  }
-                  href={item.href}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
+            {!user &&
+              headerPublicLinks.map((item: HeaderProps) => (
+                <li className="nav-item" key={item.id.toString()}>
+                  <HeaderLink href={item.href}>{item.name}</HeaderLink>
+                </li>
+              ))}
+            {user &&
+              headerPrivateLinks.map((item: HeaderProps) => (
+                <li className="nav-item" key={item.id.toString()}>
+                  <HeaderLink href={item.href}>{item.name}</HeaderLink>
+                </li>
+              ))}
           </ul>
         </div>
       </nav>

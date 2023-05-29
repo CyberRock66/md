@@ -6,11 +6,13 @@ import { useMutation } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import { Button, Input } from '@/components/UI';
 import { getFirstErrorMessageClientValidation } from '@/utils/common.utils';
+import { useRouter } from 'next/navigation';
 import { ILogin } from './Login.model';
 import { loginFormSchema } from './Login.schema';
 import { loginApi } from './Login.api';
 
 export const Login = () => {
+  const router = useRouter();
   const loginMutation = useMutation({
     mutationFn: (formData: ILogin) => loginApi(formData),
   });
@@ -35,6 +37,8 @@ export const Login = () => {
       .mutateAsync({ ...formData })
       .then((res) => {
         Cookies.set('token', res.user.token, { expires: 320 });
+        router.replace('/');
+        router.refresh();
         reset();
       })
       .catch((e) => {
